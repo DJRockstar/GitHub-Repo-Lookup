@@ -7,8 +7,14 @@ function getRepo(){
     fetch(repoURL)
     .then(response => response.json())
     .then(responseJson => {
-        console.log(responseJson);
-        displayResults(responseJson);
+        if (responseJson.message === "Not Found"){
+            $("#results").empty();
+            $("#results").append("<p>Sorry No Results Found</p>");
+        }
+        else{
+            displayResults(responseJson);
+        }
+         
     })
 }
 
